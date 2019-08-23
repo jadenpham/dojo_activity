@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model Activities
+    <div>
+        <h1>Dojo Activity Center</h1>
+        <a href="/">Home</a>
+        <a href="/logout">Log Out</a>
+    </div>
+    <div>
+        <h3>Create an Activity</h3>
+        <form asp-action="newAct" asp-controller="Home" method="post">
+            <h4><label asp-for="Title"></label></h4>
+            <span asp-validation-for="Title"></span>
+            <input asp-for="Title">
+
+            <h4><label asp-for="Time"></label></h4>
+            <span asp-validation-for="Time"></span>
+            <input asp-for="Time">
+
+            <h4><label asp-for="Date"></label></h4>
+            <span asp-validation-for="Date"></span>
+            <input asp-for="Date">
+
+            <h4><label asp-for="Duration"></label></h4>
+            <span asp-validation-for="Duration"></span>
+            <input asp-for="Duration">
+
+            <h4><label asp-for="Description"></label></h4>
+            <span asp-validation-for="Description"></span>
+            <input asp-for="Description">
+
+            <button>Create Activity</button>
+
+        </form>
+    </div>
+</body>
+</html>

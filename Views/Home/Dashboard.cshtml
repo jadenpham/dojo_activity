@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model List<Activities>
+    <div>
+        <h1>Dojo Activity Center</h1>
+        <h4>Welcome @ViewBag.name</h4>
+        <a href="/logout">Log Out</a>
+    </div>
+    <div>
+        <table>
+            <th>
+                <tr>
+                    <td><h4>Activity</h4></td>
+                    <td><h4>Date and Time</h4></td>
+                    <td><h4>Duration</h4></td>
+                    <td><h4>Event Coordinator</h4></td>
+                    <td><h4>No. of Participants</h4></td>
+                    <td><h4>Actions</h4></td>
+                </tr>
+            </th>
+
+            <tbody>
+                @foreach(var act in Model)
+                {
+                <tr>
+                    <td><a href="/activity/@act.ActivityId"> @act.Title</a></td>
+                    <td>@act.Date.ToString("dddd, dd MMMM yyyy") at @act.Time</td>
+                    @{var time = act.Duration;}
+                    @if(time >= 60)
+                        {
+                            int hour = time/60;
+                            if(hour >= 24)
+                            {
+                                int day = hour/24;
+                                <td>@day Days</td>
+                            }
+                            else{
+                                <td>@hour Hour(s)</td>
+                            }
+                        }
+                    @if(time <60)
+                    {
+                        <td>@time minutes</td>
+                    }
+                    <td>@act.Creator</td>
+                    <td>@act.Guests.Count </td>
+                    <td>@if(ViewBag.id == act.UserId)
+                        {
+                            <a href="/delete/@act.ActivityId">Delete</a>
+                        }
+                        else if(act.Guests.Any(a => a.UserId == ViewBag.id))
+                        {
+                                <a href="/leave/@act.ActivityId">Leave</a>
+                            
+                        }
+                        else{
+                            <a href="/join/@act.ActivityId">Join</a> 
+                        }
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <a href="/new">Add New Activity</a>
+</body>
+</html>

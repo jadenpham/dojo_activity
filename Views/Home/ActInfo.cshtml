@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    @model Activities
+    <div>
+        Dojo Activity Center
+        <a href="/home/@ViewBag.id">Home</a>
+        <a href="/logout">Log Out</a>
+    </div>
+    <div>
+        <h1>Event: @Model.Title</h1>
+        @if(ViewBag.id == Model.UserId)
+                        {
+                            <a href="/delete/@Model.ActivityId">Delete</a>
+                        }
+                        else if(Model.Guests.Any(a => a.UserId == ViewBag.id))
+                        {
+                                <a href="/leave/@Model.ActivityId">Leave</a>
+                            
+                        }
+                        else{
+                            <a href="/join/@Model.ActivityId">Join</a> 
+                        }
+        <h2>Event Coordinator: @ViewBag.coord.FirstName</h2>
+        <h2>Description: @Model.Description</h2>
+        <h4>Participants</h4>
+        @for(int i =0; i< @Model.Guests.Count; i++)
+        {
+        <ul>
+            <li>@Model.Guests[i].Attendee.FirstName</li>
+        </ul>
+        }
+    </div>
+</body>
+</html>
