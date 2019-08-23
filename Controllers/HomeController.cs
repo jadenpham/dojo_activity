@@ -150,6 +150,8 @@ namespace BeltExam.Controllers
             Response joining = dbContext.Responses
                             .Include(r => r.Attendee)
                             .FirstOrDefault(r => r.ActivityId == id);
+            // UserReg active = dbContext.Users
+            //                     .Include(a => a.Activities).FirstOrDefault(a => a.UserId == UserSess);
             if(joining == null || joining.UserId != UserSess)
             {
                 Response rsvp = new Response();

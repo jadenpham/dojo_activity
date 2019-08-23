@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BeltExam.Migrations
 {
-    public partial class FMigration : Migration
+    public partial class firstM : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

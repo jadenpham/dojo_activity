@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BeltExam.Migrations
 {
     [DbContext(typeof(MyContext))]
-    [Migration("20190823170840_FMigration")]
-    partial class FMigration
+    [Migration("20190823202239_firstM")]
+    partial class firstM
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -115,7 +115,7 @@ namespace BeltExam.Migrations
             modelBuilder.Entity("BeltExam.Models.Activities", b =>
                 {
                     b.HasOne("BeltExam.Models.UserReg", "Creator")
-                        .WithMany()
+                        .WithMany("Activities")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

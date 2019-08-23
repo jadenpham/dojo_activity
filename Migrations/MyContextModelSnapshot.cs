@@ -113,7 +113,7 @@ namespace BeltExam.Migrations
             modelBuilder.Entity("BeltExam.Models.Activities", b =>
                 {
                     b.HasOne("BeltExam.Models.UserReg", "Creator")
-                        .WithMany()
+                        .WithMany("Activities")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
